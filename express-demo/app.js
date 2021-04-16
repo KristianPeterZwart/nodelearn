@@ -26,7 +26,7 @@ app.post('/api/courses', (req, res) => {
     const result = Joi.validate(req.body, schema);
 
     if (result.error) {
-    res.status(400).send(result.error);
+    res.status(400).send(result.error.details[0].message);
     return;
     }
 
@@ -34,6 +34,7 @@ app.post('/api/courses', (req, res) => {
     res.status(400).send('Name is required and should be minimum 3 characters')
     return;
     }
+
 
 
     const course = {
@@ -44,16 +45,21 @@ app.post('/api/courses', (req, res) => {
     res.send(course);
 });
 
+app.put('/api/courses/:id), (req, res) => {
+    const course
+    // Look up the course
+    // If not existing return 404
+    
+    // Validate
+    // If invalid, return 400 = Bad Request
 
-app.get('/api/courses/:id', (req, res) => {
-   const course = courses.find(c => c.id === parseInt(req.params.id));
-   if (!course) res.status(404).send('The course with the given ID was not found');
-   res.send(course);
+    // Update courses
+    course.name = req.body,name;
+    res.send(course);
+    // Return the updated course
 });
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Listening on port ${port}...`));
-
-
-
-
+// Delete
+const index = courses.indexOf(course);
+courses.splice(course);
+});
